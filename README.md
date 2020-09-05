@@ -41,3 +41,5 @@ Check Status of run
 
 `tkn taskrun describe build-image-9m8qt`
 
+Deploy
+https://developer.ibm.com/tutorials/knative-build-app-development-with-tekton/
