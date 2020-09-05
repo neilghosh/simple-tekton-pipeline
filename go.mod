@@ -1,3 +1,3 @@
-module github.com/knative/docs/docs/serving/samples/hello-world/helloworld-go
+module github.com/neilghosh/simple-tekton-pipeline
 
-go 1.12
+go 1.13
