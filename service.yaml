@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: helloworld-go
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: docker.io/neilghosh/helloworld-go ##gcr.io/knative-samples/helloworld-go # Reference to the image of the app
+          env:
+            - name: TARGET
+              value: "Go Sample v1"
+
