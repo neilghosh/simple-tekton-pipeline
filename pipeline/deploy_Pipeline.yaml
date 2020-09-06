@@ -8,17 +8,6 @@ spec:
       type: git
     - name: web-image
       type: image
-
-  params:
-    - name: pathToContext
-      description: The path to the build context, used by Kaniko - within the workspace
-      default: src
-    - name: pathToYamlFile
-      description: The path to the yaml file to deploy within the git source
-    - name: imageUrl
-      description: Url of image repository
-    - name: imageTag
-      description: Tag to apply to the built image
   tasks:
     - name: build-skaffold-web
       taskRef:

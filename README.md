@@ -45,3 +45,32 @@ Check Status of run
 
 Deploy
 https://developer.ibm.com/tutorials/knative-build-app-development-with-tekton/
+
+```
+kubectl apply -f pipeline/deploy_Pipeline.yaml
+sh access/assignRoles.sh
+kubectl apply -f deploy/clusterrole.yaml
+kubectl create -f pipeline/deploy_PipelineRun.yaml
+tkn  pipelinerun list
+pipelinerun logs tutorial-pipeline-run-<AUTO_GENERATED_SUFFIX>
+kubectl get deployments
+```
+
+Deploy as knative service
+
+```
+kubectl apply -f knative/clusterrole.yaml
+kubectl apply -f knative/deploy-image-as-knative-service.yaml
+kubectl apply -f knative/deploy_pipiline.yaml
+kubectl create -f knative/deploy_PipelineRun.yaml
+
+
+kubectl get ksvc
+kubectl get pods
+```
+
+Save Cluster Cost
+``` gcloud container clusters resize knative-demo --num-nodes=0 --zone=us-central1-c ```
+
+
+
