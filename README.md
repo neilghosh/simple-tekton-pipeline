@@ -32,6 +32,8 @@ kubectl get pods --namespace tekton-pipelines --watch
 
 Creating & Running Tasks 
 https://github.com/tektoncd/pipeline/blob/master/docs/tutorial.md
+tkn  taskrun  list
+tkn tr logs echo-hello-world-task-run-hcwhw
 
 Create a Task RUN (For auto generating names user create instead of apply )
 

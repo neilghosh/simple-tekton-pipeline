@@ -16,7 +16,7 @@ spec:
         name: go-starter-service
   params:
     - name: pathToYamlFile
-      value: "/workspace/source/deployment.yaml"
+      value: "knative/knative-service.yaml"
     - name: imageUrl
       value: gcr.io/demoneil/tekton
     - name: imageTag

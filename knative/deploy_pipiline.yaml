@@ -8,6 +8,17 @@ spec:
       type: git
     - name: web-image
       type: image
+
+  params:
+    - name: pathToContext
+      description: The path to the build context, used by Kaniko - within the workspace
+      default: src
+    - name: pathToYamlFile
+      description: The path to the yaml file to deploy within the git source
+    - name: imageUrl
+      description: Url of image repository
+    - name: imageTag
+      description: Tag to apply to the built image
   tasks:
     - name: build-skaffold-web
       taskRef:
@@ -16,7 +27,7 @@ spec:
         - name: pathToDockerFile
           value: Dockerfile
         - name: pathToContext
-          value: /workspace/docker-source/ #configure: may change according to your source
+          value: /workspace/docker-source/app/ #configure: may change according to your source
       resources:
         inputs:
           - name: docker-source
@@ -24,26 +35,9 @@ spec:
         outputs:
           - name: builtImage
             resource: web-image
-    # - name: deploy-web
-    #   taskRef:
-    #     name: deploy-using-kubectl
-    #   resources:
-    #     inputs:
-    #       - name: source
-    #         resource: source-repo
-    #       - name: image
-    #         resource: web-image
-    #         from:
-    #           - build-skaffold-web
-    #   params:
-    #     - name: path
-    #       value: /workspace/source/deployment.yaml #configure: may change according to your source
-    #     - name: yamlPathToImage
-    #       value: "spec.template.spec.containers[0].image"
-
     - name: deploy-to-cluster
       taskRef:
-        name: deploy-using-kubectl
+        name: deploy-knative-using-kubectl
       runAfter:
         - build-skaffold-web
       params:
@@ -56,4 +50,4 @@ spec:
       resources:
         inputs:
           - name: git-source
-            resource: git-source
+            resource: source-repo
