@@ -1,0 +1,1 @@
+kubectl create clusterrole tutorial-role --verb=*  --resource=deployments,deployments.apps
